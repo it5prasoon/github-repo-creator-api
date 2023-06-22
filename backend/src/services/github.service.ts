@@ -33,7 +33,8 @@ export class GithubService {
   async addSampleCode(accessToken: string, repoName: string, userName: string) {
     const octokit = new Octokit({ auth: accessToken });
 
-    const content = 'console.log("Hello, World!");';
+    const content =
+      'console.log("Hello, World! - From Github Repository Creator");';
     await octokit.repos.createOrUpdateFileContents({
       owner: userName, // Replace with the repository owner
       repo: repoName,
@@ -41,5 +42,10 @@ export class GithubService {
       message: 'Add sample file',
       content: Buffer.from(content).toString('base64'),
     });
+
+    return {
+      statusCode: 200,
+      message: 'File added successfully.',
+    };
   }
 }
