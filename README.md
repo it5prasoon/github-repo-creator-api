@@ -26,6 +26,54 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## How to 
+To create a repository, follow 3 simple steps and it will create a 
+repository with a sample file in it.
+
+1. Authorize with Github (Just like Google, Facebook etc.)
+2. Enter Repository name in the text box and wait for popup "Repository created successfully."
+3. Once Repository is created, Upload sample file. (The sample fie is currently hardcoded 
+at the backend but can be uploaded from frontend side just need to create a route for that - left that for future scope)
+
+All the route information can be found in ```github.controller.ts``` file.
+
+## Deployment
+URL: https://github-repo-creator-api.onrender.com/
+
+**NOTE:** Sometime the site takes longer to load due to initialization time as it is a free tier the server goes to 
+idle state when unused for several hours.
+
+Both frontend and backend are deployed on same origin using ```app.useStaticAssets(join(__dirname, '../../frontend').toString());``` method of express.
+
+## Screenshots
+When Authorized             |  When Unauthorized
+:-------------------------:|:-------------------------:
+![](./screenshots/authorized.png)   |  ![](./screenshots/not-authorized.png)
+
+
+## Dependencies used
+Database used is: ```sqlite3``` with ```typeorm```
+```json
+    "@nestjs/common": "^10.0.2",
+    "@nestjs/config": "^3.0.0",
+    "@nestjs/core": "^10.0.2",
+    "@nestjs/jwt": "^10.1.0",
+    "@nestjs/passport": "^10.0.0",
+    "@nestjs/platform-express": "^10.0.3",
+    "@nestjs/typeorm": "^10.0.0",
+    "@octokit/rest": "^19.0.13",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "core-js": "^3.31.0",
+    "cors": "^2.8.5",
+    "passport": "^0.6.0",
+    "passport-github": "^1.1.0",
+    "passport-jwt": "^4.0.1",
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.17"
+```
+
+
 ## Installation
 
 ```bash
@@ -57,17 +105,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
