@@ -12,7 +12,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:8000',
-      'https://github-repo-creator-frontend-de6m.vercel.app/',
+      'https://github-repo-creator-frontend-de6m.vercel.app',
     ],
     methods: ['GET', 'POST'],
     credentials: true,
