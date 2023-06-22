@@ -50,6 +50,7 @@ export class GithubController {
 
   @Post('create-repo')
   async createRepositoryAndAddFiles(@Request() req, @Res() res) {
+    console.log(req);
     const cookiesString = req.headers.cookie;
     let accessToken, userName;
     if (cookiesString) {
