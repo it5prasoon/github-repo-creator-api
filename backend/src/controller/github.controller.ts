@@ -57,15 +57,10 @@ export class GithubController {
     const accessToken = accessTokenUserNameMap.accessToken;
 
     const repoName = req.body.repoName;
-    const repositoryCreatedData = await this.githubService
-      .createRepository(accessToken, repoName)
-      .then(() => {
-        console.log('Repository created successfully.');
-      })
-      .catch((error) => {
-        console.log('Error occurred while creating repository.', error);
-        res.status(500).json({ error: error.message });
-      });
+    const repositoryCreatedData = await this.githubService.createRepository(
+      accessToken,
+      repoName,
+    );
 
     // Set the reponame as a cookie in the response
     res.cookie('repoName', repoName, {
