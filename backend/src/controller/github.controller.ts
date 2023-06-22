@@ -50,46 +50,31 @@ export class GithubController {
   }
 
   @Post('create-repo')
-  async createRepositoryAndAddFiles(@Request() req, @Res() res) {
+  async createRepository(@Request() req, @Res() res) {
     const cookiesString = req.headers.cookie;
     const accessTokenUserNameMap =
       await new CommonUtils().getAccessTokenAndUser(cookiesString);
     const accessToken = accessTokenUserNameMap.accessToken;
 
-    console.log(accessTokenUserNameMap);
     const repoName = req.body.repoName;
-    const repositoryCreatedDataPromise = new Promise((resolve, reject) => {
-      this.githubService
-        .createRepository(accessToken, repoName)
-        .then(() => {
-          console.log('Repository created successfully.');
-          resolve({ success: true });
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
-
-    repositoryCreatedDataPromise
-      .then((repositoryCreatedData) => {
-        res.cookie('repoName', repoName, {
-          httpOnly: true,
-          secure: true, // Set to true if using HTTPS
-        });
-        res.json(repositoryCreatedData);
+    const repositoryCreatedData = await this.githubService
+      .createRepository(accessToken, repoName)
+      .then(() => {
+        console.log('Repository created successfully.');
       })
       .catch((error) => {
-        console.log(error);
-        res
-          .status(500)
-          .json({ error: 'Failed to create repository and add files.' });
+        console.log('Error occurred while creating repository.', error);
+        res.status(500).json({ error: error.message });
       });
+
+    res.json(repositoryCreatedData);
   }
 
   @Post('upload-files')
   async uploadFiles(@Request() req, @Res() res) {
     const cookiesString = req.headers.cookie;
-    const accessTokenUserNameMap = await new CommonUtils().getAccessTokenAndUser(cookiesString); 
+    const accessTokenUserNameMap =
+      await new CommonUtils().getAccessTokenAndUser(cookiesString);
     const accessToken = accessTokenUserNameMap.accessToken;
     const userName = accessTokenUserNameMap.userName;
     const repoName = accessTokenUserNameMap.repoName;

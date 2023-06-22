@@ -12,7 +12,7 @@ export class GithubService {
       return {
         statusCode: 200,
         body: JSON.stringify(data),
-        message: 'Repository created successfully',
+        message: 'Repository created successfully.',
         repository: {
           name: JSON.stringify(repoName),
         },
@@ -21,7 +21,7 @@ export class GithubService {
       if (error.status === 422) {
         throw {
           statusCode: 422,
-          message: 'Repository name already exists',
+          message: 'Repository name already exists.',
           errors: JSON.stringify(error.errors),
         };
       } else {
