@@ -44,11 +44,13 @@ export class GithubController {
       secure: true, // Set to true if using HTTPS
     });
 
+    console.log(res);
     const frontendURL = this.configService.get<string>('frontend.url'); // Replace with your frontend URL
     return res.redirect(`${frontendURL}`);
   }
 
   @Post('create-repo')
+  @UseGuards(AuthGuard('github'))
   async createRepositoryAndAddFiles(@Request() req, @Res() res) {
     console.log(req);
     const cookiesString = req.headers.cookie;
