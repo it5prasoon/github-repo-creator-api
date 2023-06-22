@@ -44,11 +44,8 @@ export class GithubController {
       secure: true, // Set to true if using HTTPS
     });
 
-    res.send(
-      `<script>window.localStorage.setItem('accessToken', '${accessToken}');window.location.href='${this.configService.get<string>(
-        'frontend.url',
-      )}'</script>`,
-    );
+    const frontendURL = this.configService.get<string>('frontend.url'); // Replace with your frontend URL
+    return res.redirect(`${frontendURL}`);
   }
 
   @Post('create-repo')
