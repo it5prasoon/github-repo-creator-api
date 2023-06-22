@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Github Repo Creator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+      body {
+          text-align: center;
+          padding-top: 40px;
+      }
+
+      h2 {
+          color: #333;
+      }
+
+      .form-container {
+          max-width: 400px;
+          margin: 0 auto;
+      }
+
+      .form-container input[type="text"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+      }
+
+      .form-container button {
+          width: 100%;
+          padding: 10px;
+          font-size: 16px;
+      }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2>Step 1: <span class="d-inline">Authorize with Github</span></h2>
+      <p>
+        <button type="submit" id="authorizeBtn" class="btn btn-primary btn-lg">Authorize with Github</button>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <h2>Step 2: Create a Repository</h2>
+      <div class="form-container">
+        <form id="createRepoForm">
+          <input type="text" id="repoNameInput" class="form-control" placeholder="Enter repository name" required>
+          <button type="submit" id="createRepoBtn" class="btn btn-primary btn-lg">Create Repository</button>
+        </form>
+        <p id="successMessage"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>
